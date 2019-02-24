@@ -20,7 +20,7 @@ public class Main {
         }
             if(x == liczba){
                 System.out.println("SUKCES! BRAWO TY!");
-            }
+        }
     }
     public static int getRandomInt(){
         Random random = new Random();
@@ -30,6 +30,5 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Podaj liczbe: ");
         return scanner.nextInt();
-
     }
 }
