@@ -1,34 +1,44 @@
 import java.util.Random;
 import java.util.Scanner;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Main {
 
     public static void main(String[] args) {
-        int x = getRandomInt();
-        sprawdz(x);
-    }
-        public static void sprawdz(int x){
-            int liczba = getUserValue();
 
-            if(x > liczba){
-                System.out.println("X jest większa - próbuj dalej!");
-                sprawdz(x);
+        Scanner scan = new Scanner(System.in);
+        int licz_uz;
+        boolean koniec = false;
+        int min = 0, max = 100, temp = 0;
+        int licznik = 1;
+
+
+
+        System.out.print("Podaj liczbę z przediał 0 -100: ");
+        licz_uz = scan.nextInt();
+
+        while(!koniec)
+        {
+            temp = losuj(min,max);
+            System.out.println("Próba nr " + licznik + ",czy jest to " + temp);
+            licznik ++;
+
+            if(temp < licz_uz) min = temp;
+            else if(temp > licz_uz) max = temp;
+            else koniec = true;
         }
-            if(x < liczba){
-                System.out.println("X jest mniejsza - próbuj dalej!");
-                sprawdz(x);
-        }
-            if(x == liczba){
-                System.out.println("SUKCES! BRAWO TY!");
-        }
+
+        System.out.println("Znalazłem Twoja liczbę w " + (licznik -1) + " próbach, jest to : " + temp );
+
+
     }
-    public static int getRandomInt(){
-        Random random = new Random();
-        return random.nextInt(100);
+
+    public static int losuj(int min, int max){
+
+
+        Random los = new Random();
+        //return los.nextInt((max - min) + 1)+ min;
+        return los.nextInt((max - min) )+ min;
     }
-    public static int getUserValue(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Podaj liczbe: ");
-        return scanner.nextInt();
-    }
+
 }
